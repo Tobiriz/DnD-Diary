@@ -156,7 +156,7 @@ export default {
 <template>
   <div class="item">
     <h2 v-if="!editLocation">{{ name }}</h2>
-    <p v-if="!editLocation">{{ description }}</p>
+    <pre v-if="!editLocation">{{ description }}</pre>
 
     <div class="item-buttons" v-if="!editLocation">
       <button class="standard-button" @click="toggleEditLocationOn">Bearbeiten</button>
