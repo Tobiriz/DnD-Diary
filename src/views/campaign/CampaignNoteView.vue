@@ -61,6 +61,18 @@ export default {
   },
 
   methods: {
+    notesBeingEditedPlus() {
+      this.notesBeingEdited++
+      this.campaignStore.setActiveEditing(true)
+    },
+
+    notesBeingEditedMinus() {
+      this.notesBeingEdited--
+      if (this.notesBeingEdited === 0) {
+        this.campaignStore.setActiveEditing(false)
+      }
+    },
+
     addNote() {
       this.inputPromtAddNote.show = true
     },
@@ -109,8 +121,8 @@ export default {
         :forceSave="forceSave"
         :forceCancel="forceCancel"
         @deleteNote="campaignStore.deleteNoteFromActiveCampaign"
-        @plusEdit="notesBeingEdited++"
-        @minusEdit="notesBeingEdited--"
+        @plusEdit="notesBeingEditedPlus"
+        @minusEdit="notesBeingEditedMinus"
       />
     </template>
   </CampaignDetails>

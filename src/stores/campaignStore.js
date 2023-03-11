@@ -6,7 +6,8 @@ export const useCampaignStore = defineStore('campaignStore', {
       lastPath: null,
       campaigns: [],
       selectedCampaign: null,
-      activeCampaign: null
+      activeCampaign: null,
+      activeEditing: false,
     }
   },
 
@@ -41,6 +42,10 @@ export const useCampaignStore = defineStore('campaignStore', {
 
     saveLastPath(path) {
       this.lastPath = path
+    },
+
+    setActiveEditing(editing) {
+      this.activeEditing = editing
     },
 
     deleteCampaign() {
@@ -113,7 +118,7 @@ export const useCampaignStore = defineStore('campaignStore', {
     updateActiveCampaignDescription(description) {
       this.activeCampaign._description = description
       this.saveCampaginsInLocalStorage()
-    }
+    },
   },
 
   getters: {
@@ -131,6 +136,10 @@ export const useCampaignStore = defineStore('campaignStore', {
 
     getLastPath(state) {
       return state.lastPath
+    },
+
+    getActiveEditing(state) {
+      return state.activeEditing
     }
   }
 })

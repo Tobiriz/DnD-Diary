@@ -60,13 +60,25 @@ export default {
     },
 
     players() {
-        if (this.campaignStore.getActiveCampaign._players)
-            return this.campaignStore.getActiveCampaign._players
-        else return []
+      if (this.campaignStore.getActiveCampaign._players)
+        return this.campaignStore.getActiveCampaign._players
+      else return []
     }
   },
 
   methods: {
+    sessionsBeingEditedPlus() {
+      this.sessionsBeingEdited++
+      this.campaignStore.setActiveEditing(true)
+    },
+
+    sessionsBeingEditedMinus() {
+      this.sessionsBeingEdited--
+      if (this.sessionsBeingEdited === 0) {
+        this.campaignStore.setActiveEditing(false)
+      }
+    },
+
     addSession() {
       this.inputPromtAddSession.show = true
     },
@@ -116,8 +128,8 @@ export default {
         :forceSave="forceSave"
         :forceCancel="forceCancel"
         @deleteSession="campaignStore.deleteSessionFromActiveCampaign"
-        @plusEdit="sessionsBeingEdited++"
-        @minusEdit="sessionsBeingEdited--"
+        @plusEdit="sessionsBeingEditedPlus"
+        @minusEdit="sessionsBeingEditedMinus"
       />
     </template>
   </CampaignDetails>

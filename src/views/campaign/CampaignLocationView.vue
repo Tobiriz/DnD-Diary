@@ -65,6 +65,18 @@ export default {
   },
 
   methods: {
+    locationsBeingEditedPlus() {
+      this.locationsBeingEdited++
+      this.campaignStore.setActiveEditing(true)
+    },
+
+    locationsBeingEditedMinus() {
+      this.locationsBeingEdited--
+      if (this.locationsBeingEdited === 0) {
+        this.campaignStore.setActiveEditing(false)
+      }
+    },
+
     addLocation() {
       this.inputPromtAddLocation.show = true
     },
@@ -113,8 +125,8 @@ export default {
         :forceSave="forceSave"
         :forceCancel="forceCancel"
         @deleteLocation="campaignStore.deleteLocationFromActiveCampaign"
-        @plusEdit="locationsBeingEdited++"
-        @minusEdit="locationsBeingEdited--"
+        @plusEdit="locationsBeingEditedPlus"
+        @minusEdit="locationsBeingEditedMinus"
       />
     </template>
   </CampaignDetails>

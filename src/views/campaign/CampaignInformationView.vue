@@ -110,6 +110,18 @@ export default {
   },
 
   methods: {
+    playersBeingEditedPlus() {
+      this.playersBeingEdited++
+      this.campaignStore.setActiveEditing(true)
+    },
+
+    playersBeingEditedMinus() {
+      this.playersBeingEdited--
+      if (this.playersBeingEdited === 0) {
+        this.campaignStore.setActiveEditing(false)
+      }
+    },
+
     editInformation() {
       if (this.editInfo) {
         this.confirmSaveChanges()
@@ -120,6 +132,7 @@ export default {
         this.changes.description = this.description
         this.headerButtonText = 'Speichern'
         this.headerChoiceButtonText = 'Abbrechen'
+        this.playersBeingEditedPlus()
       }
     },
 
@@ -138,13 +151,13 @@ export default {
     },
 
     saveChanges() {
-      console.log('save changes')
       this.campaignStore.updateActiveCampaignName(this.changes.campaignName)
       this.campaignStore.updateActiveCampaignDungeonMaster(this.changes.dungeonMaster)
       this.campaignStore.updateActiveCampaignDescription(this.changes.description)
       this.confirmChanges.show = false
       this.resetButtonText()
       this.editInfo = false
+      this.playersBeingEditedMinus()
     },
 
     confirmCancelEdit() {
@@ -172,6 +185,7 @@ export default {
     cancelEdit() {
       this.resetButtonText()
       this.confirmCancel.show = false
+      this.playersBeingEditedMinus()
       this.editInfo = false
     },
 
@@ -258,8 +272,8 @@ export default {
           :forceCancel="forceCancel"
           :activeEditing="editInfo"
           @deletePlayer="campaignStore.deletePlayerFromActiveCampaign"
-          @plusEdit="playersBeingEdited++"
-          @minusEdit="playersBeingEdited--"
+          @plusEdit="playersBeingEditedPlus"
+          @minusEdit="playersBeingEditedMinus"
         />
 
         <button v-if="editInfo" @click="confirmAddPlayer" class="button standard-button">
@@ -335,7 +349,7 @@ div {
   font-size: 1rem;
 
   pre {
-    margin-top: .5rem;
+    margin-top: 0.5rem;
   }
 }
 

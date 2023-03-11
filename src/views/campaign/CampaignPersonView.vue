@@ -61,6 +61,18 @@ export default {
   },
 
   methods: {
+    personsBeingEditedPlus() {
+      this.personsBeingEdited++
+      this.campaignStore.setActiveEditing(true)
+    },
+
+    personsBeingEditedMinus() {
+      this.personsBeingEdited--
+      if (this.personsBeingEdited === 0) {
+        this.campaignStore.setActiveEditing(false)
+      }
+    },
+
     addPerson() {
       this.inputPromtAddPerson.show = true
     },
@@ -109,8 +121,8 @@ export default {
         :forceSave="forceSave"
         :forceCancel="forceCancel"
         @deletePerson="campaignStore.deletePersonFromActiveCampaign"
-        @plusEdit="personsBeingEdited++"
-        @minusEdit="personsBeingEdited--"
+        @plusEdit="personsBeingEditedPlus"
+        @minusEdit="personsBeingEditedMinus"
       />
     </template>
   </CampaignDetails>

@@ -21,6 +21,10 @@ export default {
   computed: {
     campaign() {
       return this.campaignStore.getActiveCampaign
+    },
+
+    activeEditing() {
+      return this.campaignStore.getActiveEditing
     }
   },
 
@@ -39,7 +43,7 @@ export default {
 </script>
 
 <template>
-  <CampaignNavigation :campaign="campaign" @backToSelection="backToSelection" />
+  <CampaignNavigation :campaign="campaign" :activeEditing="activeEditing" @backToSelection="backToSelection" />
   <RouterView />
 </template>
 
