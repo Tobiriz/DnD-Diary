@@ -5,12 +5,12 @@ export default {
   name: 'App',
 
   components: {
-    RouterView,
+    RouterView
   },
 
   mounted() {
     this.$router.push('/landing-page')
-  },
+  }
 }
 </script>
 
