@@ -1,4 +1,11 @@
-# dnd-diary
+# DnD-Diary
+
+DnD Diary is a private project to manage Dungeons and Dragons campaigns and characters. 
+
+Note: This project is currently under development 
+
+
+Vite Stuff:
 
 This template should help get you started developing with Vue 3 in Vite.
 
