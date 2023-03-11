@@ -29,6 +29,32 @@ export default {
     confirm() {
       this.$emit('confirm')
     }
+  },
+
+  mounted() {
+    document.addEventListener('keydown', (event) => {
+      switch(event.key) {
+        case 'Escape':
+          this.confirm()
+          break
+        case 'Enter':
+          this.confirm()
+          break
+      }
+    })
+  },
+
+  beforeUnmount() {
+    document.removeEventListener('keydown', (event) => {
+      switch(event.key) {
+        case 'Escape':
+          this.confirm()
+          break
+        case 'Enter':
+          this.confirm()
+          break
+      }
+    })
   }
 }
 </script>

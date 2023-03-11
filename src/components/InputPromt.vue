@@ -42,6 +42,34 @@ export default {
     cancel() {
       this.$emit('cancel')
     }
+  },
+
+  mounted() {
+    document.getElementById('input-promt-field').focus()
+
+    document.addEventListener('keydown', (event) => {
+      switch(event.key) {
+        case 'Escape':
+          this.cancel()
+          break
+        case 'Enter':
+          this.confirm()
+          break
+      }
+    })
+  },
+
+  beforeUnmount() {
+    document.removeEventListener('keydown', (event) => {
+      switch(event.key) {
+        case 'Escape':
+          this.cancel()
+          break
+        case 'Enter':
+          this.confirm()
+          break
+      }
+    })
   }
 }
 </script>
@@ -51,7 +79,7 @@ export default {
   <div class="confirm">
     <h2>{{ title }}</h2>
     <p>{{ message }}</p>
-    <input type="text" v-model="inputText" />
+    <input id="input-promt-field" type="text" v-model="inputText" />
     <div class="confirm__actions">
       <button class="confirm-button" @click="confirm">{{ confirmText }}</button>
       <button class="danger-button" @click="cancel">{{ cancelText }}</button>
