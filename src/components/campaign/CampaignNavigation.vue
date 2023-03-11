@@ -1,6 +1,7 @@
 <script>
 import { RouterLink } from 'vue-router'
 import Confirm from '../Confirm.vue'
+import Alert from '../Alert.vue'
 
 export default {
   name: 'CampaignNavigation',
@@ -9,26 +10,38 @@ export default {
 
   components: {
     RouterLink,
-    Confirm
+    Confirm,
+    Alert
   },
 
   props: {
     campaign: {
       type: Object,
       required: false
+    },
+
+    activeEditing: {
+      type: Boolean,
+      required: true
     }
   },
 
   data() {
     return {
       confirm: {
+        show: false,
         title: 'Zurück zur Auswahl',
         message: 'Wirklich zurück zur Kampagnenauswahl?',
         confirmText: 'Ja',
         cancelText: 'Nein'
       },
 
-      showConfirm: false
+      alert: {
+        show: false,
+        title: 'Aktive Bearbeitung',
+        message: 'Speicher die Änderungen oder breche die Bearbeitung ab, bevor du zur Kampagnenauswahl zurückkehrst.',
+        confirmText: 'Ok'
+      }
     }
   },
 
@@ -36,21 +49,29 @@ export default {
     campaignName() {
       if (this.campaign) return this.campaign._name
       else return ''
+    },
+
+    editingActive() {
+      return this.activeEditing
     }
   },
 
   methods: {
     confirmBackToSelection() {
-      this.showConfirm = true
+      if (this.editingActive) {
+        this.alert.show = true
+        return
+      }
+      this.confirm.show = true
     },
 
     backToSelection() {
-      this.showConfirm = false
+      this.confirm.show = false
       this.$emit('backToSelection')
     },
 
     cancelBackToSelection() {
-      this.showConfirm = false
+      this.confirm.show = false
     }
   }
 }
@@ -70,7 +91,7 @@ export default {
   </div>
 
   <Confirm
-    v-if="showConfirm"
+    v-if="confirm.show"
     :title="confirm.title"
     :message="confirm.message"
     :confirmText="confirm.confirmText"
@@ -78,6 +99,8 @@ export default {
     @confirm="backToSelection"
     @cancel="cancelBackToSelection"
   />
+
+  <Alert v-if="alert.show" :title="alert.title" :message="alert.message" :confirmText="alert.confirmText" @confirm="alert.show = false" />
 </template>
 
 <style lang="scss" scoped>
@@ -86,7 +109,7 @@ export default {
   position: absolute;
   top: var(--header-height);
   left: 0;
-  width: 25%;
+  width: 20%;
   height: calc(100dvh - var(--header-height));
   background-color: var(--color-background-soft);
   box-sizing: border-box;
@@ -104,7 +127,7 @@ export default {
     text-decoration: none;
     background-color: var(--color-link);
     padding: 1rem 1.5rem;
-    font-size: 2vh;
+    font-size: 2.5dvh;
     border-bottom: 1px solid var(--color-border);
     cursor: pointer;
 
