@@ -50,6 +50,16 @@ export const useCampaignStore = defineStore('campaignStore', {
       this.saveCampaginsInLocalStorage()
     },
 
+    addSessionToActiveCampaign(name) {
+      this.activeCampaign._sessions.push(new session(name))
+      this.saveCampaginsInLocalStorage()
+    },
+
+    deleteSessionFromActiveCampaign(session) {
+      this.activeCampaign._sessions = this.activeCampaign._sessions.filter((s) => s !== session)
+      this.saveCampaginsInLocalStorage()
+    },
+
     addPersonToActiveCampaign(name) {
       this.activeCampaign._persons.push(new person(name))
       this.saveCampaginsInLocalStorage()
@@ -130,6 +140,7 @@ class campaign {
     this._name = name
     this._dm = ''
     this._description = ''
+    this._sessions = []
     this._players = []
     this._persons = []
     this._locations = []
@@ -158,6 +169,14 @@ class campaign {
 
   set dm(dm) {
     this._dm = dm
+  }
+
+  get sessions() {
+    return this._sessions
+  }
+
+  set sessions(sessions) {
+    this._sessions = sessions
   }
 
   get players() {
@@ -205,6 +224,38 @@ class person {
 
   set name(name) {
     this._name = name
+  }
+
+  get description() {
+    return this._description
+  }
+
+  set description(description) {
+    this._description = description
+  }
+}
+
+class session {
+  constructor(name) {
+    this._name = name
+    this._players = []
+    this._description = ''
+  }
+
+  get name() {
+    return this._name
+  }
+
+  set name(name) {
+    this._name = name
+  }
+
+  get players() {
+    return this._players
+  }
+
+  set players(players) {
+    this._players = players
   }
 
   get description() {
