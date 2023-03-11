@@ -26,7 +26,7 @@ export default {
 
   methods: {
     backToSelection() {
-      this.$router.replace('/characters')
+      this.$router.replace('/diary/character-selection')
       this.characterStore.deselectActiveCharacter()
     }
   },

@@ -60,7 +60,8 @@ export default {
   <div class="campaign-navigation">
     <h3>{{ campaignName }}</h3>
 
-    <RouterLink :to="{ name: 'information' }">Informationen</RouterLink>
+    <RouterLink :to="{ name: 'information' }">Übersicht</RouterLink>
+    <RouterLink :to="{ name: 'session' }">Spieltage</RouterLink>
     <RouterLink :to="{ name: 'persons' }">Personen</RouterLink>
     <RouterLink :to="{ name: 'locations' }">Orte</RouterLink>
     <RouterLink :to="{ name: 'campaignNotes' }">Notizen</RouterLink>

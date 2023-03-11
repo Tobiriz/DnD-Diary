@@ -26,7 +26,7 @@ export default {
 
   methods: {
     backToSelection() {
-      this.$router.replace('/campaigns')
+      this.$router.replace('/diary/campaign-selection')
       this.campaignStore.deselectActiveCampaign()
     }
   },

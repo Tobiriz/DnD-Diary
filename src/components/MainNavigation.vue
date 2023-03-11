@@ -37,11 +37,11 @@ export default {
     },
 
     isOnCharacterPage() {
-      return this.$route.matched.some((route) => route.path.startsWith('/character'))
+      return this.$route.matched.some((route) => route.path.includes('/character'))
     },
 
     isOnCampaignPage() {
-      return this.$route.matched.some((route) => route.path.startsWith('/campaign'))
+      return this.$route.matched.some((route) => route.path.includes('/campaign'))
     }
   }
 }
@@ -50,14 +50,14 @@ export default {
 <template>
   <nav>
     <RouterLink
-      to="/characters"
+      :to="{ name: 'character-selection' }"
       :class="{ inactive: this.characterStore.getActiveCharacter && isOnCharacterPage }"
     >
       {{ character }}
     </RouterLink>
 
     <RouterLink
-      to="/campaigns"
+    :to="{ name: 'campaign-selection' }"
       :class="{ inactive: this.campaignStore.getActiveCampaign && isOnCampaignPage }"
     >
       {{ campaign }}
