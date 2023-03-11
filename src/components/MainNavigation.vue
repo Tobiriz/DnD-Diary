@@ -57,7 +57,7 @@ export default {
     </RouterLink>
 
     <RouterLink
-    :to="{ name: 'campaign-selection' }"
+      :to="{ name: 'campaign-selection' }"
       :class="{ inactive: this.campaignStore.getActiveCampaign && isOnCampaignPage }"
     >
       {{ campaign }}
