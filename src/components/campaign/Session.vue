@@ -96,7 +96,7 @@ export default {
 
     campaignPlayers() {
       return this.players
-    },
+    }
   },
 
   watch: {
@@ -137,7 +137,7 @@ export default {
 
     saveChanges() {
       this.session._name = this.changes.name
-        this.session._players = this.changes.players
+      this.session._players = this.changes.players
       this.session._description = this.changes.description
       this.toggleEditSessionOff()
       this.confirmChanges.show = false
@@ -162,11 +162,11 @@ export default {
     },
 
     noChanges() {
-        return (
-            this.changes.name === this.name &&
-            this.changes.description === this.description &&
-            this.changes.players === this.sessionPlayers
-            )
+      return (
+        this.changes.name === this.name &&
+        this.changes.description === this.description &&
+        this.changes.players === this.sessionPlayers
+      )
     },
 
     cancelEditSession() {
@@ -181,9 +181,9 @@ export default {
   <div class="item">
     <h2 v-if="!editSession">{{ name }}</h2>
     <ul v-if="!editSession" class="session-players">
-        <li v-for="player in sessionPlayers" :key="player">
-            {{ player._name }}
-        </li>
+      <li v-for="player in sessionPlayers" :key="player">
+        {{ player._name }}
+      </li>
     </ul>
     <pre v-if="!editSession">{{ description }}</pre>
 
@@ -192,12 +192,17 @@ export default {
       <button class="danger-button" @click="confirmDeleteSession">Löschen</button>
     </div>
 
-    <input type="text" v-model="changes.name" v-if="editSession" placeholder="Datum des Spieltages" />
+    <input
+      type="text"
+      v-model="changes.name"
+      v-if="editSession"
+      placeholder="Datum des Spieltages"
+    />
     <ul v-if="editSession" class="edit-session-players">
-        <li v-for="player in campaignPlayers" :key="player">
-            <input type="checkbox" :value="player" v-model="changes.players" />
-            {{ player._name }}
-        </li>
+      <li v-for="player in campaignPlayers" :key="player">
+        <input type="checkbox" :value="player" v-model="changes.players" />
+        {{ player._name }}
+      </li>
     </ul>
     <textarea
       v-model="changes.description"
@@ -252,7 +257,7 @@ export default {
 
 <style lang="scss" scoped>
 .item h2 {
-    margin: 0;
+  margin: 0;
 }
 .session-players {
   list-style: none;
@@ -265,13 +270,13 @@ export default {
     margin-right: 0.5rem;
   }
 
-    li::after {
-        content: ',';
-    }
+  li::after {
+    content: ',';
+  }
 
-    li:last-child::after {
-        content: '';
-    }
+  li:last-child::after {
+    content: '';
+  }
 }
 
 .edit-session-players {
@@ -285,7 +290,7 @@ export default {
 
     input {
       margin-right: 0.5rem;
-      margin-left: .5rem;
+      margin-left: 0.5rem;
     }
   }
 }

@@ -5,33 +5,33 @@ import { useCampaignStore } from '../stores/CampaignStore'
 import MainNavigation from '../components/MainNavigation.vue'
 
 export default {
-    name: 'Diary',
+  name: 'Diary',
 
-    components: {
-        RouterView,
-        MainNavigation
-    },
+  components: {
+    RouterView,
+    MainNavigation
+  },
 
-    setup() {
-        const characterStore = useCharacterStore()
-        const campaignStore = useCampaignStore()
-        return {
-            characterStore,
-            campaignStore
-        }
-    },
-
-    mounted() {
-        this.campaignStore.loadCampaignsFromLocalStorage()
-    },
-
-    beforeUnmount() {
-        this.campaignStore.saveCampaginsInLocalStorage()
+  setup() {
+    const characterStore = useCharacterStore()
+    const campaignStore = useCampaignStore()
+    return {
+      characterStore,
+      campaignStore
     }
+  },
+
+  mounted() {
+    this.campaignStore.loadCampaignsFromLocalStorage()
+  },
+
+  beforeUnmount() {
+    this.campaignStore.saveCampaginsInLocalStorage()
+  }
 }
 </script>
 
 <template>
-    <MainNavigation />
-    <RouterView />
+  <MainNavigation />
+  <RouterView />
 </template>
