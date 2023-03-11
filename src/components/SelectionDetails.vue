@@ -67,8 +67,8 @@ export default {
     },
 
     player() {
-        if (this.playerArray !== undefined && this.playerArray.length > 0) return this.playerArray
-        else return ['Keine Spieler']
+      if (this.playerArray !== undefined && this.playerArray.length > 0) return this.playerArray
+      else return ['Keine Spieler']
     }
   }
 }
@@ -110,8 +110,8 @@ export default {
   z-index: 1;
   position: absolute;
   top: var(--header-height);
-  left: 25%;
-  width: 75%;
+  right: 0;
+  width: 80%;
   height: calc(100dvh - var(--header-height));
   background-color: var(--color-background-soft);
   box-sizing: border-box;
@@ -130,18 +130,17 @@ export default {
       margin-top: 1rem;
       padding-left: 1rem;
     }
-  
+
     p {
       padding: 1rem 1.5rem;
       font-size: 2vh;
     }
 
     ul {
-      padding: .5rem 3rem;
+      padding: 0.5rem 3rem;
       font-size: 2vh;
     }
   }
-
 
   .buttons {
     position: relative;

@@ -27,8 +27,8 @@ export default {
   z-index: 3;
   position: absolute;
   top: var(--header-height);
-  left: 25%;
-  width: 75%;
+  right: 0;
+  width: 80%;
   height: calc(100dvh - var(--header-height));
   background-color: var(--color-background-soft);
   box-sizing: border-box;

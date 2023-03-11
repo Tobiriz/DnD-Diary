@@ -86,7 +86,7 @@ export default {
   position: absolute;
   top: var(--header-height);
   left: 0;
-  width: 25%;
+  width: 20%;
   height: calc(100dvh - var(--header-height));
   background-color: var(--color-background-soft);
   box-sizing: border-box;
@@ -103,7 +103,7 @@ export default {
     display: block;
     text-decoration: none;
     padding: 1rem 1.5rem;
-    font-size: 2vh;
+    font-size: 2.5dvh;
     border-bottom: 1px solid var(--color-border);
     cursor: pointer;
 
