@@ -29,7 +29,7 @@ export default {
       editInfo: false,
       headerButtonText: 'Bearbeiten',
       headerChoiceButtonText: '',
-      openTab: 'Informationen',
+      openTab: 'Übersicht',
       playersBeingEdited: 0,
       forceSave: false,
       forceCancel: false,
